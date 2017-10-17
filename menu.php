@@ -23,7 +23,7 @@ class Menu
         '<header class="header">
 		<div class="logo">
 			<span class="logo__icon"></span>
-			<a class="logo__text" href="assets/index.php"><b>Game Name</b></a>
+			<a class="logo__text" href="index.php"><b>Game Name</b></a>
 		</div>
 		<ul class="menu">';
         foreach (self::$items as $key=>$page)
