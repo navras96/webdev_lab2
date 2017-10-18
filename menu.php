@@ -2,42 +2,35 @@
 
 class Menu
 {
-    private static $items = [1 => ['Start',    'index.php?page=1', 'start.html'],
-                             2 => ['About',    'index.php?page=2', 'about.html'],
-                             3 => ['Top List', 'index.php?page=3', 'top_list.html']];
-
-    private static function getLine($page, $active)
+    private static $url = 'index.php?page=%s';
+    private static $items = [1 => ['title' => 'Start', 'path' => 'start.html'],
+                             2 => ['title' => 'About', 'path' => 'about.html'],
+                             3 => ['title' => 'Top List', 'path' => 'top_list.html']];
+    private static function getLine($key, $active)
     {
         if ($active)
         {
             $active_line = '<li class="menu__item menu__item_active">%s</li>';
-            return sprintf($active_line, $page[0]);
+            return sprintf($active_line, self::$items[$key]['title']);
         }
         $line = '<li class="menu__item"><a href=%s>%s</a></li>';
-        return sprintf($line, $page[1], $page[0]);
+        return sprintf($line, sprintf(self::$url, $key), self::$items[$key]['title']);
     }
 
     public static function renderMenu($active_menu = 1)
     {
-        echo
-        '<header class="header">
-		<div class="logo">
-			<span class="logo__icon"></span>
-			<a class="logo__text" href="index.php"><b>Game Name</b></a>
-		</div>
-		<ul class="menu">';
+        $result = '';
         foreach (self::$items as $key=>$page)
         {
-            if ($active_menu == $key) { echo self::getLine($page, true); }
-            else { echo self::getLine($page, false); }
+            if ($active_menu == $key) { $result = $result . self::getLine($key, true); }
+            else { $result = $result . self::getLine($key, false); }
         }
-		echo '</ul>
-	    </header>';
+        return $result;
     }
 
     public static function getPage($page = 1)
     {
-        echo file_get_contents(self::$items[$page][2]);
+        return file_get_contents(self::$items[$page]['path']);
     }
 }
 

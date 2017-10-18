@@ -5,17 +5,22 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="sortcut icon" type="image/x-icon" href="favicon.ico">
-    <?php include_once("menu.php"); ?>
+    <?php require("menu.php"); ?>
 </head>
-<body background="images/backgr.jpg">
+<body background="images/backgr.jpg" class="body">
+<header class="header">
+    <div class="logo">
+        <span class="logo__icon"></span>
+        <a class="logo__text" href="index.php"><b>Game Name</b></a>
+    </div>
+    <ul class="menu">
 <?php
-$page = $_GET["page"];
-if ($page == null) $page = 1;
-Menu::renderMenu($page);
+$page = 1;
+if (isset($_GET["page"])) $page = $_GET["page"];
+echo Menu::renderMenu($page);
 ?>
-<?php
-$page = $_GET["page"];
-if ($page == null) $page = 1;
-Menu::getPage($page); ?>
+    </ul>
+</header>
+<?php echo Menu::getPage($page); ?>
 </body>
 </html>

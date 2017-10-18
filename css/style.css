@@ -41,7 +41,7 @@ a {
     margin: 0px;
 }
 .form { 
-	padding: none;
+	padding: 0;
 	position: absolute;
 	width: 9em;
 	top: 45%;
@@ -50,7 +50,6 @@ a {
 .logo {
     width: 160px;
     display: block;
-    display: t
     padding: 0px;
     margin: 5px;
     padding-left: 10%;
@@ -95,4 +94,8 @@ a {
 }
 .list{
 	padding: 3em;
+}
+.body{
+	padding: 0;
+	margin: 0;
 }
